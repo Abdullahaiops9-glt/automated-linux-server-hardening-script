@@ -1,203 +1,219 @@
-Automated Linux Server Hardening Script
+# Automated Linux Server Hardening Script
 
-Overview
+## Overview
 
 This project demonstrates how to automate Linux server hardening tasks using Bash scripting on a RHEL-based system.
 
 The goal is to reduce manual configuration effort while applying common security best practices used by Linux System Administrators.
 
-The hardening process includes:
+## The hardening process includes:
 
-SSH Security Configuration
-Firewall Configuration
-SELinux Verification
-Critical File Permission Hardening
-Service Auditing
-Open Port Auditing
-Verification Reporting
+* SSH Security Configuration
+* Firewall Configuration
+* SELinux Verification
+* Critical File Permission Hardening
+* Service Auditing
+* Open Port Auditing
+* Verification Reporting
 
-Project Objectives
-Improve Linux server security
-Automate repetitive administration tasks
-Apply security best practices
-Generate validation reports
-Practice Bash scripting for system administration
+## Project Objectives
 
-Technologies Used
-RHEL / Rocky Linux / AlmaLinux
-Bash Scripting
-OpenSSH
-Firewalld
-SELinux
-Systemctl
-Journalctl
+* Improve Linux server security
+* Automate repetitive administration tasks
+* Apply security best practices
+* Generate validation reports
+* Practice Bash scripting for system administration
 
-Project Structure
+## Technologies Used
 
+* RHEL / Rocky Linux / AlmaLinux
+* Bash Scripting
+* OpenSSH
+* Firewalld
+* SELinux
+* Systemctl
+* Journalctl
+
+## Project Structure
+
+```text
 automated-linux-server-hardening-script/
 
 │
-
 ├── hardening.sh
-
 ├── verification.sh
-
 ├── commands.sh
-
 ├── README.md
 │
 └── screenshots/
+    ├── 1-project-structure.png
+    ├── 2-hardening-script-created.png
+    ├── 3-verification-script-created.png
+    ├── 4-file-permission-verification.png
+    ├── 5-hardening-script-execution.png
+    ├── 6-verification-script-execution.png
+    ├── 7-ssh-firewall-selinux-verification.png
+    ├── 8-service-audit.png
+    ├── 9-open-ports-audit.png
+    └── 10-final-server-status.png
+```
 
- ├── 1-project-structure.png
+## Security Controls Implemented
 
- ├── 2-hardening-script-created.png
+### 1. SSH Hardening
 
- ├── 3-verification-script-created.png
+#### The script:
 
- ├── 4-file-permission-verification.png
+* Creates SSH configuration backup
+* Disables root login
+* Disables empty passwords
+* Limits authentication attempts
+* Restarts SSH service
 
- ├── 5-hardening-script-execution.png
+#### Verification:
 
- ├── 6-verification-script-execution.png
-
- ├── 7-ssh-firewall-selinux-verification.png
-
- ├── 8-service-audit.png
-
- ├── 9-open-ports-audit.png
-
- └── 10-final-server-status.png
-
-Security Controls Implemented
-
-SSH Hardening
-
-The script:
-
-Creates SSH configuration backup
-Disables root login
-Disables empty passwords
-Limits authentication attempts
-Restarts SSH service
-
-Verification:
-
+```bash
 sudo grep PermitRootLogin /etc/ssh/sshd_config
+```
 
-Firewall Configuration
+### 2. Firewall Configuration
 
-The script:
+#### The script:
 
-Enables firewalld
-Starts firewalld service
-Allows SSH access
-Reloads firewall rules
+* Enables firewalld
+* Starts firewalld service
+* Allows SSH access
+* Reloads firewall rules
 
-Verification:
+#### Verification:
 
+```bash
 sudo firewall-cmd --list-all
+```
 
-SELinux Verification
+### 3. SELinux Verification
 
-The script verifies:
+#### The script verifies:
 
-SELinux status
-Enforcing mode
+* SELinux status
+* Enforcing mode
 
-Verification:
+#### Verification:
 
+```bash
 getenforce
+```
 
-File Permission Hardening
+### 4. File Permission Hardening
 
-Critical files checked:
+#### Critical files checked:
 
-/etc/shadow
-/etc/gshadow
-/etc/passwd
+* /etc/shadow
+* /etc/gshadow
+* /etc/passwd
 
-Verification:
+#### Verification:
 
+```bash
 ls -l /etc/shadow
+```
 
-Service Auditing
+### 5. Service Auditing
 
-The verification script displays:
+#### The verification script displays:
 
-Running services
-Enabled services
-Open listening ports
+* Running services
+* Enabled services
+* Open listening ports
 
-Verification:
+#### Verification:
 
+```bash
 systemctl list-units --type=service
 
 ss -tuln
+```
 
-Running The Project
+## Running The Project
 
-Make scripts executable:
+### Make scripts executable:
 
+```bash
 chmod +x hardening.sh
 
 chmod +x verification.sh
 
 chmod +x commands.sh
+```
 
-Execute hardening:
+### Execute hardening:
 
+```bash
 sudo ./hardening.sh
+```
 
-Run verification:
+### Run verification:
 
+```bash
 sudo ./verification.sh
+```
 
+## Sample Verification Checks
 
-Sample Verification Checks
+### Verify SSH:
 
-Verify SSH:
-
+```bash
 grep PermitRootLogin /etc/ssh/sshd_config
+```
 
-Verify Firewall:
+### Verify Firewall:
 
+```bash
 systemctl status firewalld
+```
 
-Verify SELinux:
+### Verify SELinux:
 
+```bash
 getenforce
+```
 
-Verify Open Ports:
+### Verify Open Ports:
 
+```bash
 ss -tuln
+```
 
-Verify Critical File Permissions:
+### Verify Critical File Permissions:
 
+```bash
 ls -l /etc/shadow
+```
 
+## Screenshots Included
 
-Screenshots Included
+1. Project Structure
+2. Script Creation
+3. Script Execution
+4. SSH Configuration
+5. Firewall Configuration
+6. SELinux Status
+7. Verification Report
+8. Final Hardened Server
 
-Project Structure
-Script Creation
-Script Execution
-SSH Configuration
-Firewall Configuration
-SELinux Status
-Verification Report
-Final Hardened Server
-Skills Demonstrated
-Linux Administration
-Bash Scripting
-SSH Hardening
-Firewall Management
-SELinux Verification
-Security Auditing
-Service Management
-Troubleshooting
-System Hardening 
+## Skills Demonstrated
 
-Learning Outcome
+* Linux Administration
+* Bash Scripting
+* SSH Hardening
+* Firewall Management
+* SELinux Verification
+* Security Auditing
+* Service Management
+* Troubleshooting
+* System Hardening
+
+## Learning Outcome
 
 This project strengthened practical skills in Linux security and automation. It demonstrates how Bash scripting can be used to automate server hardening tasks while maintaining consistency across multiple systems.
 
